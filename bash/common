@@ -8,7 +8,7 @@ export DOT_BASH_BASE=~/dot/bash
 dot_bash_sourcedir () {
     dir=$1 ; shift
     if [ ! -d $dir ] ; then
-	echo "dot_bash_sourcedir: given non-directory: $dir"
+	#echo "dot_bash_sourcedir: given non-directory: $dir"
 	return
     fi
     # avoid *~ and .*
@@ -19,13 +19,13 @@ dot_bash_sourcedir () {
 }
 dot_bash_source_dirs () {
     subdir=$1 ; shift
-    basedir = $DOT_BASH_BASE/$subdir
+    basedir=$DOT_BASH_BASE/$subdir
     if [ ! -d $basedir ] ; then
 	echo "dot_bash_source_dirs: given non-directory: $basedir"
 	return
     fi
     # Kernel, distributor, distribution codename, hostname
-    dirs=all $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c) $(uname -n)
+    dirs="all $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c) $(uname -n)"
     for dir in $dirs; do
 	dot_bash_sourcedir $basedir/$dir
     done
