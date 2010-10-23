@@ -2,32 +2,33 @@
 
 # Meta-settings and functions common to all other bash setup scripts
 
-export DOT_BASH_BASE=~/dot/bash
+export DOT_BASE=~/dot/bash
 
 # Source all files in a given directory
-dot_bash_sourcedir () {
+dot_sourcedir () {
     dir=$1 ; shift
     if [ ! -d $dir ] ; then
-	#echo "dot_bash_sourcedir: given non-directory: $dir"
+	#echo "dot_sourcedir: given non-directory: $dir"
 	return
     fi
     # avoid *~ and .*
     for file in $dir/*[a-zA-Z0-9] ; do
 	if [ -d $file ] ; then continue; fi
-	    source $file
+	if [ ! -f $file ] ; then continue; fi
+	source $file
     done
 }
-dot_bash_source_dirs () {
+dot_source_dirs () {
     subdir=$1 ; shift
-    basedir=$DOT_BASH_BASE/$subdir
+    basedir=$DOT_BASE/$subdir
     if [ ! -d $basedir ] ; then
-	echo "dot_bash_source_dirs: given non-directory: $basedir"
+	echo "dot_source_dirs: given non-directory: $basedir"
 	return
     fi
     # Kernel, distributor, distribution codename, hostname
     dirs="all $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c) $(uname -n)"
     for dir in $dirs; do
-	dot_bash_sourcedir $basedir/$dir
+	dot_sourcedir $basedir/$dir
     done
 
     if [ "$subdir" = "rc" ] ; then
@@ -37,4 +38,4 @@ dot_bash_source_dirs () {
     fi
     if [ -f $local_file ] ; then source $local_file; fi
 }
-    
+dot_sourcedir $DOT_BASE/common

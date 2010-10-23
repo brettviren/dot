@@ -28,11 +28,13 @@ lsb_release -s -c    # Distribution codename (maverik, squeeze)
 uname -n             # Hostname
 #+end_src
 
-There is also a 
+Interactive logins first source =~/.bashrc= followed by any relevant
+chunks under =login/=.
+
+Individual script chunks can make use of functions defined in 
 
 #+begin_src shell
-~/dot/bash/common
+~/dot/bash/common.sh
+~/dot/bash/common/*
 #+end_src
 
-file that configuration scripts can sorce to get helpful
-meta-functions and variables.

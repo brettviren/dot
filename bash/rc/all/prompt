@@ -1,0 +1,18 @@
+# -*- shell-script -*- #
+
+# Set the shell prompt
+
+# Basic
+PS1='\u@\h\w> '
+
+# Munge the xterm title if possible
+case "$TERM" in
+    xterm*|rxvt*)
+	PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+	;;
+esac
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+

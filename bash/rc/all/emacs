@@ -1,0 +1,3 @@
+# -*- shell-script -*- #
+
+export EDITOR="emacs -nw"

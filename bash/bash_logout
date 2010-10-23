@@ -1,5 +1,5 @@
 # -*- shell-script -*- #
-source ~/dot/bash/common
-dot_bash_source_dirs logout
+source ~/dot/bash/common.sh
+dot_source_dirs logout
 
 

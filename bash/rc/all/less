@@ -1,0 +1,7 @@
+# -*- shell-script -*- #
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+export PAGER=less
+export LESS=-X

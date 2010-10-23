@@ -1,5 +1,9 @@
 # -*- shell-script -*- #
-source ~/dot/bash/common
-dot_bash_source_dirs rc
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+source ~/dot/bash/common.sh
+dot_source_dirs rc
 
 

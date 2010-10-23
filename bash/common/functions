@@ -1,0 +1,16 @@
+# -*- shell-script -*- #
+
+# Echo arguments such that the xterm title is set
+# This may be added to the prompt like:
+# PS1='\[$(dot_xtitle $(pwd -L))\]\u@\h\w> '
+function dot_xtitle ()
+{
+    xterm_title=$@
+    case "$TERM" in
+	xterm*|rxvt*)
+	    echo -n "]2;${xterm_title}" ;;
+    esac
+}
+
+
+
