@@ -1,0 +1,38 @@
+# -*- shell-script -*- #
+
+lsd () {
+    "List only directories"
+    if [ -n "$1" ] ; then
+	goto $1
+    fi
+    local count
+    count=0
+    for n in *; do
+        if [ -d "$n" ] ; then
+            dirs[$count]=$n
+	    let "count += 1"
+        fi
+    done
+    /bin/ls -d "${dirs[@]}"
+    if [ -n "$1" ] ; then
+	goback
+    fi
+}
+
+down () {
+    "Run find using args as pattern"
+    find . -name "*${@}*" -print
+}
+idown () {
+    "Run case insensitve find using args as pattern"
+    find . -iname "*${@}*" -print
+}
+
+# the ``man'' page for the STL
+stl () {
+    if [ -d /usr/share/doc/stl-manual/html ] ; then
+        w3m /usr/share/doc/stl-manual/html/table_of_contents.html
+    else
+        echo 'STL doc not installed'
+    fi
+}

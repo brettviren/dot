@@ -1,0 +1,30 @@
+# -*- shell-script -*- #
+
+work-proxy () {
+    local proxy=$1 ; shift
+    if [ "$proxy" = "none" ] ; then
+	unset http_proxy
+	unset ftp_proxy
+	return
+    fi
+    if [ -n "$proxy" ] ; then
+	export http_proxy=$proxy
+	export ftp_proxy=$proxy
+	return
+    fi
+
+    if pgrep -f 'ssh bnlproxy' > /dev/null 2>&1 ; then
+	proxy=http://127.0.0.1:3128
+    elif ip-address | grep -q 192.168 ; then
+	proxy="http://192.168.1.140:3128"
+    elif ip-address | grep -q 130.199 ; then
+	proxy="http://192.168.1.130:3128"
+    else
+	echo 'Failed to find a suitable proxy'
+    fi
+    export http_proxy=$proxy
+    export ftp_proxy=$proxy
+}
+work-proxy
+
+    

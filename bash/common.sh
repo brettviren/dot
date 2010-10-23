@@ -6,12 +6,13 @@ export DOT_BASE=~/dot/bash
 
 # Source all files in a given directory
 dot_sourcedir () {
-    dir=$1 ; shift
+    local dir=$1 ; shift
     if [ ! -d $dir ] ; then
 	#echo "dot_sourcedir: given non-directory: $dir"
 	return
     fi
     # avoid *~ and .*
+    local file
     for file in $dir/*[a-zA-Z0-9] ; do
 	if [ -d $file ] ; then continue; fi
 	if [ ! -f $file ] ; then continue; fi
@@ -19,18 +20,21 @@ dot_sourcedir () {
     done
 }
 dot_source_dirs () {
-    subdir=$1 ; shift
-    basedir=$DOT_BASE/$subdir
+    local subdir=$1 ; shift
+    local basedir=$DOT_BASE/$subdir
     if [ ! -d $basedir ] ; then
 	echo "dot_source_dirs: given non-directory: $basedir"
 	return
     fi
-    # Kernel, distributor, distribution codename, hostname
-    dirs="all $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c) $(uname -n)"
+    # Kernel, distributor, distribution codename, domainname, hostname
+    local dirs="all"
+    dirs+=" $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c)"
+    dirs+=" $(hostname -d) $(uname -n)"
     for dir in $dirs; do
 	dot_sourcedir $basedir/$dir
     done
 
+    local local_file
     if [ "$subdir" = "rc" ] ; then
 	local_file=$HOME/.bashrc.local
     else

@@ -1,0 +1,2 @@
+# -*- shell-script -*- #
+PATH=$HOME/share:$HOME/bin:$PATH

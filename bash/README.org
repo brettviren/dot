@@ -25,6 +25,7 @@ Where =DIR= is expanded in turn to to be the string "any", followed by
 uname -s             # Kernel name (Linux)
 lsb_release -s -i    # Distribution name (Ubuntu, Debian)
 lsb_release -s -c    # Distribution codename (maverik, squeeze)
+hostname -d          # Domain name
 uname -n             # Hostname
 #+end_src
 

@@ -3,7 +3,12 @@
 # Set the shell prompt
 
 # Basic
-PS1='\u@\h\w> '
+PS1='\u@\h:\W> '
+
+# If we have git completion, make it git aware
+if type __git_ps1 > /dev/null 2>&1 ; then
+    PS1='$(__git_ps1 "(%s)")'$PS1
+fi
 
 # Munge the xterm title if possible
 case "$TERM" in

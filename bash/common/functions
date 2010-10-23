@@ -5,12 +5,32 @@
 # PS1='\[$(dot_xtitle $(pwd -L))\]\u@\h\w> '
 function dot_xtitle ()
 {
-    xterm_title=$@
+    local xterm_title=$@
     case "$TERM" in
 	xterm*|rxvt*)
 	    echo -n "]2;${xterm_title}" ;;
     esac
 }
+
+# Go to a directory - a quiet pushd
+goto () {
+    pushd $1 > /dev/null 2>&1
+}
+goback () {
+    popd $1 > /dev/null 2>&1
+}
+
+ip-address () {
+    local addr
+    for addr in $(hostname -i) ; do
+	if [ "$addr" = "127.0.1.1" ] ; then continue; fi
+	if [ "$addr" = "127.0.0.1" ] ; then continue; fi
+	if [ "$addr" = "::1" ] ; then continue; fi
+	echo $addr
+	return
+    done
+}
+
 
 
 
