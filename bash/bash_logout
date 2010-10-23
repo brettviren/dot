@@ -1,0 +1,5 @@
+# -*- shell-script -*- #
+source ~/dot/bash/common
+dot_bash_source_dirs logout
+
+

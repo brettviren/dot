@@ -1,0 +1,38 @@
+DOT BASH
+
+This area sets up the interactive bash session for all accounts.
+
+* Installation
+
+Run ../install.sh in a new account.  It creates .bash_login,
+.bash_logout and .bashrc as symlinks to files of the same, non-dotted
+names in this directory.  If any of these files exists, they will be
+moved asside.  If .profile or .bash_profile exist they will be moved
+aside.
+
+* How it works
+
+The usual rc files will load all relevant configuration chunks found
+under
+
+#+begin_src shell
+~/dot/bash/{login,logout,rc}/DIR/*
+#+end_src
+
+Where =DIR= is expanded in turn to to be the string "any", followed by
+
+#+begin_src shell
+uname -s             # Kernel name (Linux)
+lsb_release -s -i    # Distribution name (Ubuntu, Debian)
+lsb_release -s -c    # Distribution codename (maverik, squeeze)
+uname -n             # Hostname
+#+end_src
+
+There is also a 
+
+#+begin_src shell
+~/dot/bash/common
+#+end_src
+
+file that configuration scripts can sorce to get helpful
+meta-functions and variables.
