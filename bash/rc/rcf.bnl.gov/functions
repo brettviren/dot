@@ -1,0 +1,6 @@
+# -*- shell-script -*-
+
+grid-me () {
+    source /afs/cern.ch/project/gd/LCG-share/sl5/etc/profile.d/grid-env.sh
+    voms-proxy-init --cert ~/.globus/usercert.pem --key ~/.globus/userkey.pem --voms Engage:/Engage/LBNE/Role=pilot
+}

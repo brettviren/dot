@@ -1,0 +1,6 @@
+# -*- shell-script -*-
+
+# Entrance to dayabay environment setup
+if [ "$USER" = "bvdb" ] ; then
+    source ~dayabay/nuwaenv.sh
+fi
