@@ -23,7 +23,7 @@ dot_source_dirs () {
     local subdir=$1 ; shift
     local basedir=$DOT_BASE/$subdir
     if [ ! -d $basedir ] ; then
-	echo "dot_source_dirs: given non-directory: $basedir"
+	#echo "dot_source_dirs: given non-directory: $basedir"
 	return
     fi
     # Kernel, distributor, distribution codename, domainname, hostname
