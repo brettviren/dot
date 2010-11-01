@@ -26,10 +26,18 @@ dot_source_dirs () {
 	#echo "dot_source_dirs: given non-directory: $basedir"
 	return
     fi
-    # Kernel, distributor, distribution codename, domainname, hostname
+
+    subdomain=""
+    domain=$(hostname -d)
+    if [ $(hostname -d | tr '.' ' '|wc -w) -eq 3 ] ; then
+	domain=$(hostname -d | cut -d. -f2,3)
+	subdomain=$(hostname -d)
+    fi
+
+    # Kernel, architecture, distributor, distribution codename, domain, subdomain, host
     local dirs="all"
     dirs+=" $(uname -s) $(lsb_release -s -i) $(lsb_release -s -c)"
-    dirs+=" $(hostname -d) $(uname -n)"
+    dirs+=" $domain $subdomain $(uname -n)"
     for dir in $dirs; do
 	dot_sourcedir $basedir/$dir
     done
