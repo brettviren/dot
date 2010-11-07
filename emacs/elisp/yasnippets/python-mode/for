@@ -1,0 +1,5 @@
+#name : for ... in ... : ...
+# --
+for ${var} in ${collection}:
+    $0
+    continue
