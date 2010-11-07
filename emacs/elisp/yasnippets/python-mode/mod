@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+'''
+${1:modname} - ${2:shortdesc}
+
+$0
+'''

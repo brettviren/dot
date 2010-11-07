@@ -1,0 +1,4 @@
+try:
+    $3
+except ${1:Exception}, ${2:err}:
+    $0

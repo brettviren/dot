@@ -4,6 +4,7 @@
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/el-get/yasnippet/snippets")
+(yas/load-directory "~/dot/emacs/elisp/yasnippets")
 
 ;(require 'xcscope)
 ;(require 'pymacs)
