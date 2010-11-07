@@ -1,7 +1,15 @@
-(setq scroll-step 1)
-(setq next-screen-context-lines 1)
-(setq line-number-mode t)
-(setq column-number-mode t)
-(setq mouse-yank-at-point t)
-(setq user-mail-address "bv@bnl.gov")
+(setq scroll-step 1
+      next-screen-context-lines 1
+      line-number-mode t
+      column-number-mode t
+      mouse-yank-at-point t
+      user-mail-address "bv@bnl.gov"
+      display-time-mode t
+      scroll-bar-mode (quote right)
+      show-paren-mode t
+      size-indication-mode t
+      transient-mark-mode t
+      inhibit-splash-screen t
+      )
+
 (global-font-lock-mode 1)
