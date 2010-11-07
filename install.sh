@@ -37,8 +37,12 @@ install_bash () {
 }
 
 install_emacs () {
-    install_file $HOME/dot/emacs/emacs $HOME/.emacs
+    line='setq custom-file'
+    if grep -q $line $HOME/.emacs ; then
+	return
+    fi
+    install_file $HOME/dot/emacs/dot.emacs $HOME/.emacs
 }
 
 install_bash
-#install_emacs
+install_emacs

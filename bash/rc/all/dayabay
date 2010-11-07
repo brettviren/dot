@@ -1,0 +1,6 @@
+# -*- shell-script -*-
+
+# Entrance to dayabay environment setup
+if [ "$(hostname -d)" != "rcf.bnl.gov" -a -f ~dayabay/nuwaenv.sh ] ; then
+    source ~dayabay/nuwaenv.sh
+fi

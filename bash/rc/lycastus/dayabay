@@ -1,0 +1,44 @@
+# -*- shell-script -*-
+
+# lycatus has a goofy problem in that the kernel reports x86_64 but
+# userland is strictly 32 bits.  This really confuses CMT.  The
+# solution is to run under "linux32" so we have to have a slightly
+# customized nuwaenv.
+
+nuwaenv () {
+    if [ "$(dpkg --print-architecture)" = "i386" -a \
+	 "$(uname -m)" = "i686" ] ; then
+	echo "Fix dot/bash/rc/lycastus/dayabay, lycastus no longer needs AMD64 fix"
+    fi
+
+    #file="/tmp/nuwaenv.${USER}.$$"
+    file="$HOME/nuwaenv.${USER}.$$"
+
+    cat <<EOF> $file
+for thing in ~/.bashrc $file.2
+do
+    echo "sourcing \$thing"
+    source \$thing
+done
+EOF
+
+    nuwaenv=/home/bviren/work/dayabay/offline/installation/trunk/dybinst/python/nuwaenv.py
+    echo "Running nuwaenv.py with \"-s bash $@\""
+
+    /usr/bin/linux32 $nuwaenv -s bash $@ >> $file.2
+
+    while [ -n "$1" ] ; do 
+        shift;
+    done;
+    if [ "$(dpkg --print-architecture)" = "i386" -a \
+	"$(uname -m)" = "x86_64" ]
+    then
+	echo 'starting linux32 shell'
+	/usr/bin/linux32 /bin/bash --rcfile $file
+    else
+	source $file
+    fi
+    rm -f $file $file.2
+    #echo "$file"
+}
+
