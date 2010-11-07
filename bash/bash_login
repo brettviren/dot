@@ -1,4 +1,5 @@
-# -*- shell-script -*- #
+#!/bin/bash
+source ~/dot/bash/common.sh
 source ~/.bashrc
 dot_source_dirs login
 
