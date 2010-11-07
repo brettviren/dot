@@ -1,0 +1,12 @@
+;; -*- emacs-lisp -*-
+
+;(setup-japanese-environment)
+
+(add-to-list 'load-path (expand-file-name "~/dot/emacs/elisp"))
+
+(load (expand-file-name "~/dot/emacs/generic"))
+(load (expand-file-name "~/dot/emacs/dict"))
+(load (expand-file-name "~/dot/emacs/dayabay"))
+
+
+

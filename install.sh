@@ -36,4 +36,9 @@ install_bash () {
     done
 }
 
+install_emacs () {
+    install_file $HOME/dot/emacs/emacs $HOME/.emacs
+}
+
 install_bash
+#install_emacs
