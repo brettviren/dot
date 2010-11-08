@@ -1,5 +1,16 @@
-;; So the idea is that you copy/paste this code into your *scratch* buffer,
-;; hit C-j or visit this file and eval-buffer, and you have a working el-get.
+;; To install el-get and el-gotten packages the first time, do:
+;;
+;; emacs -q dot/emacs/elisp/el-get-install
+;;
+;; M-x eval-curent buffer
+;;
+;; The -q is to avoid loading configuration that requires el-get.
+;;
+;; If you see errors about "-v" not supported, it means your git is
+;; too old.
+;;
+;; Then, exit emacs and restart it w/out -q to install required
+;; packages.
 
 (let* ((el-get-dir        (expand-file-name "~/.emacs.d/el-get/"))
        (dummy             (unless (file-directory-p el-get-dir)
@@ -25,3 +36,4 @@
         (with-current-buffer (process-buffer proc)
           (goto-char (point-max))
           (insert "\nCongrats, el-get is installed and ready to serve!"))))))
+
