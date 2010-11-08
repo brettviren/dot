@@ -1,5 +1,6 @@
 ;;
 
+;; YASnippet
 (add-to-list 'load-path "~/.emacs.d/el-get/yasnippet")
 (require 'yasnippet)
 (yas/initialize)
@@ -10,8 +11,17 @@
 		       (mapcar 'purecopy
 			       '(
 				 ("/yasnippets/" . snippet-mode)
-				 ("/snippets/" . snippet-mode)
-				 ))))
+				 ("/snippets/" . snippet-mode)))
+				 auto-mode-alist))
+
+
+
+;; auto-complete
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+(setq ac-auto-start 3)
 
 ;(require 'xcscope)
 ;(require 'pymacs)

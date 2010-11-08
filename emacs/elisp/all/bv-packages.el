@@ -3,7 +3,7 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get/el-get/recipes")
 (setq el-get-sources
       ;'(cssh el-get xcscope yasnippet))
-      '(xcscope yasnippet))
+      '(auto-complete xcscope yasnippet))
 (el-get)
 (provide 'bv-packages)
 
