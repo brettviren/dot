@@ -6,6 +6,13 @@ eval $(dircolors)
 
 # make our own path
 export PATH=$HOME/share:$HOME/bin:$HOME/opt/git/bin:/bin:/usr/bin:/usr/kerberos/bin:/usr/local/bin:/usr/sbin:/sbin
+
+# Check for compiled free software
+fs=/afs/rhic.bnl.gov/dayabay/software/trunk/fs
+if [ -d $fs/bin ] ; then
+    PATH=$fs/bin:$PATH
+fi
+
 export MANPATH=":$HOME/opt/git/share/man"
 
 export http_proxy=http://192.168.1.130:3128/
