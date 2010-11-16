@@ -26,3 +26,11 @@
 ;(require 'xcscope)
 ;(require 'pymacs)
 ;(pymacs-load "ropemacs" "rope-")
+
+
+;; http://metapundit.net/sections/blog/239
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")

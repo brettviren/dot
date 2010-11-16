@@ -1,0 +1,29 @@
+#name: classheader
+# --
+/**
+ * \class ${1:`(file-name-sans-extension (buffer-name))`}
+ *
+ * \brief $2
+ *
+ * $3
+ *
+ * `(user-full-name)` <`user-mail-address`> `(current-time-string)`
+ *
+ */
+
+
+#ifndef ${1:$(upcase text)}
+#define ${1:$(upcase text)}
+
+
+class $1
+{
+public:
+    $1($4);
+    virtual ~$1();
+
+    $0
+
+};
+
+#endif  // ${1:$(upcase text)}
