@@ -10,6 +10,7 @@ pythonfile = ~/dot/mail/offlineimap.py
 [Account BNL]
 localrepository = LocalIMAP
 remoterepository = RemoteIMAP
+# postsynchook = notmuch new
 
 [Repository LocalIMAP]
 type = IMAP
@@ -28,4 +29,4 @@ preauthtunnel = ssh -q lycastus 'MAIL=maildir:$HOME/Maildir /usr/lib/dovecot/ima
 # folderfilter = lambda name: not (name in [ 'INBOX.spam', 'INBOX.commits' ])
 # holdconnectionopen = yes
 maxconnections = 3
-# foldersort = lld_cmp
+foldersort = lld_cmp

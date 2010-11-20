@@ -42,8 +42,8 @@ imaputil.flagsmaildir2imap = lld_flagsmaildir2imap
 imaputil.flagsimap2maildir = lld_flagsimap2maildir
 
 # Grab some folders first, and archives later
-high = ['^important$', '^work$']
-low = ['^archives', '^spam$']
+high = ['^default$', '^dayabay']
+low = ['^lists', '^.auto', '^.root']
 import re
 
 def lld_cmp(x, y):

@@ -8,6 +8,7 @@
 (load "setqs.el")
 (load "functions.el")
 (load "cpp.el")
+(load "email.el")
 (load "mode-hooks.el")
 
 
