@@ -1,0 +1,14 @@
+<sshtunnel>
+	<name>dovecot</name>
+	<host>gateway.phy.bnl.gov</host>
+	<port>22</port>
+	<login>bviren</login>
+	<privkey></privkey>
+	<autostart>0</autostart>
+	<tunnel>
+		<type>local</type>
+		<port1>10993</port1>
+		<host>home.phy.bnl.gov</host>
+		<port2>993</port2>
+	</tunnel>
+</sshtunnel>

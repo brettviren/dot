@@ -1,0 +1,14 @@
+<sshtunnel>
+	<name>Hoppy web</name>
+	<host>192.168.1.69</host>
+	<port>22</port>
+	<login>bviren</login>
+	<privkey></privkey>
+	<autostart>0</autostart>
+	<tunnel>
+		<type>local</type>
+		<port1>3129</port1>
+		<host>localhost</host>
+		<port2>8888</port2>
+	</tunnel>
+</sshtunnel>

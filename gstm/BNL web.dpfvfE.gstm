@@ -1,0 +1,26 @@
+<sshtunnel>
+	<name>Offsite BNL</name>
+	<host>130.199.23.11</host>
+	<port>22</port>
+	<login>bviren</login>
+	<privkey></privkey>
+	<autostart>0</autostart>
+	<tunnel>
+		<type>local</type>
+		<port1>3128</port1>
+		<host>httpvipinside.sec.bnl.local</host>
+		<port2>3128</port2>
+	</tunnel>
+	<tunnel>
+		<type>local</type>
+		<port1>2525</port1>
+		<host>bnl.gov</host>
+		<port2>25</port2>
+	</tunnel>
+	<tunnel>
+		<type>local</type>
+		<port1>10993</port1>
+		<host>home.phy.bnl.gov</host>
+		<port2>993</port2>
+	</tunnel>
+</sshtunnel>

@@ -14,3 +14,9 @@
 
 (global-font-lock-mode 1)
 (iswitchb-mode t)
+(setq auto-mode-alist (append 
+		       (mapcar 'purecopy
+			       '(
+				 ("\\rc$" . conf-mode)
+				 ))
+		       auto-mode-alist))

@@ -1,0 +1,31 @@
+# -*- conf -*-
+
+# Following
+# http://roland.entierement.nu/blog/2010/09/08/gnus-dovecot-offlineimap-search-a-howto.html
+
+[general]
+accounts =  BNL
+pythonfile = ~/dot/mail/offlineimap.py
+
+[Account BNL]
+localrepository = LocalIMAP
+remoterepository = RemoteIMAP
+
+[Repository LocalIMAP]
+type = IMAP
+preauthtunnel = MAIL=maildir:$HOME/Maildir /usr/lib/dovecot/imap
+holdconnectionopen = yes
+
+[Repository RemoteIMAP]
+type = IMAP
+remotehost = localhost		#use SSH tunnel
+remoteuser = bviren
+# remotepass = 
+preauthtunnel = ssh -q lycastus 'MAIL=maildir:$HOME/Maildir /usr/lib/dovecot/imap'
+#ssl = yes
+#nametrans = lambda name: re.sub('^INBOX.', '', name)
+# folderfilter = lambda name: name in [ 'INBOX.important', 'INBOX.work' ]
+# folderfilter = lambda name: not (name in [ 'INBOX.spam', 'INBOX.commits' ])
+# holdconnectionopen = yes
+maxconnections = 3
+# foldersort = lld_cmp

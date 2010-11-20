@@ -46,5 +46,25 @@ install_emacs () {
     install_file $HOME/dot/emacs/dot.emacs $HOME/.emacs
 }
 
+install_mail () {
+    rc=".offlineimaprc"
+    if [ -f $HOME/$rc ] ; then
+	return
+    fi
+    install_file $HOME/dot/mail/dot$rc $HOME/$rc
+}
+
+install_gstm () {
+    if [ -d $HOME/.gSTM ] ; then
+	mv $HOME/.gSTM $HOME/.gSTM.moved
+    fi
+    if [ -L $HOME/.gSTM ] ; then
+	return
+    fi
+    ln -s $HOME/dot/gstm $HOME/.gSTM
+}
+
 install_bash
 install_emacs
+install_mail
+install_gstm

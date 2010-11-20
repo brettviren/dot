@@ -1,0 +1,14 @@
+<sshtunnel>
+	<name>local dovecot</name>
+	<host>localhost</host>
+	<port>22</port>
+	<login>bviren</login>
+	<privkey></privkey>
+	<autostart>0</autostart>
+	<tunnel>
+		<type>local</type>
+		<port1>10143</port1>
+		<host>localhost</host>
+		<port2>143</port2>
+	</tunnel>
+</sshtunnel>
