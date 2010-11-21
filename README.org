@@ -1,0 +1,35 @@
+My "dot" files.
+
+This repo attempts to get control of what has historically been my
+chaotic configuration files.  It is meant to be usable in every one of
+my accounts.  This README keeps some notes for myself.
+
+* Installation
+
+Run ./install.sh 
+
+* bash
+
+Break things up in two dimensions:
+
+ * by login/rc/logout 
+
+ * by Kernel, architecture, distributor, distribution codename,
+   domain, subdomain, host
+
+* emacs
+
+Want to break things up like in bash, but my elisp skills are lacking.
+
+Rely on el-get to provide some packages.  See el-get-install.el.
+
+* mail
+
+Mail = GNUS + OfflineIMAP + notmuch + dovecot + postfix + SSH
+
+Postfix sends mail out to a port forwarded via ssh to a smarthost.
+OfflineIMAP syncs to primary server via port foraded via ssh.
+
+* gstm
+
+SSH tunnel manager configurations.
