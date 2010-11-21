@@ -10,7 +10,7 @@ pythonfile = ~/dot/mail/offlineimap.py
 [Account BNL]
 localrepository = LocalIMAP
 remoterepository = RemoteIMAP
-# postsynchook = notmuch new
+postsynchook = notmuch new
 
 [Repository LocalIMAP]
 type = IMAP
