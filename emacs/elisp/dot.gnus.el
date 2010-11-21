@@ -15,21 +15,33 @@
 (defun my-message-setup-hook ()
   (bbdb-define-all-aliases)
   (local-set-key "\M-TAB" 'bbdb-complete-name)
-)
+  )
 (add-hook 'message-setup-hook 'my-message-setup-hook)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus) 
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-message) 
 (add-hook 'gnus-startup-hook '(lambda () (variable-pitch-mode t)) )
 
+(define-key gnus-group-mode-map (kbd "G")
+   '(lambda ()
+      (interactive)
+      (offlineimap)
+      )
+   )
+(define-key gnus-group-mode-map (kbd "O")
+   '(lambda ()
+      (interactive)
+      (switch-to-buffer "*OfflineIMAP*")
+      )
+   )
 
 ;; cert signed mail
 ; http://www.emacswiki.org/emacs/GnusSMIME
 (setq mm-decrypt-option 'always)
 (setq mm-verify-option 'always)
 (setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
-(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/.certs/mine/cert-and-key.pem" nil))))
-(setq smime-CA-directory "/home/bviren/.certs/root")
-(setq smime-certificate-directory "/home/bviren/.certs/others")
+(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/dot/certs/mine/cert-and-key.pem" nil))))
+(setq smime-CA-directory "/home/bviren/dot/certs/root")
+(setq smime-certificate-directory "/home/bviren/dot/certs/others")
 (setq password-cache t)
 (setq password-cache-expiry 86400)
 (add-hook 'message-send-hook 'mml-secure-message-sign-smime)
@@ -67,8 +79,56 @@
 
 (setq gnus-group-line-format "%M%S%p%P%5y:%B%(%G%)%l %O\n")
 (setq gnus-parameters
-      '(("^nnimap.*"
-	  (gcc-self . t))))
+      '(
+	("^nnimap.*"
+	 (gcc-self . t)
+	 )
+	("bnl:.*"
+	 (comment . "bnl")
+	 (display . all)
+	 (gcc-self . t)
+	 )
+	("gmail:.*"
+	 (comment . "gmail")
+	 (posting-style
+	  (address "brett.viren@gmail.com"))
+	 )
+	))
+
+;; Handle multiple SMTP accounts using a mixture of these:
+;; http://www.emacswiki.org/cgi-bin/wiki/MultipleSMTPAccounts
+;; http://www.emacswiki.org/cgi-bin/wiki/GnusMSMTP
+;; http://www.emacswiki.org/cgi-bin/wiki/GnusGmail
+(defun set-smtp-local ()
+  "Send mail to localhost server"
+  (setq smtpmail-smtp-server "localhost"))
+
+(set-smtp-local)			;default
+
+(defun set-smtp-gmail ()
+  "Set up smtp through gmail"
+  (setq smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+	smtpmail-smtp-server "smtp.gmail.com"
+	smtpmail-default-smtp-server "smtp.gmail.com"
+	smtpmail-smtp-service 587
+	smtpmail-auth-credentials '(("smtp.gmail.com" 587
+				     "brett.viren@gmail.com" nil))))
+
+(defun change-smtp ()
+  "A function to switch between the two"
+  (if (message-mail-p)
+      (save-excursion
+	(let* ((from (save-restriction
+		       (message-narrow-to-headers)
+		       (message-fetch-field "from"))))
+	  (cond
+	   ((string-match "bv@bnl.gov" from) (set-smtp-local))
+	   ((string-match "bviren@bnl.gov" from) (set-smtp-local))
+	   ((string-match "brett.viren@gmail.com" from) (set-smtp-gmail))
+	   (t set-smtp-bnl))))))
+
+(add-hook 'message-send-hook 'change-smtp)
+
 
 ;; Reading mail
 ;; http://www.emacswiki.org/emacs/MimeTypesWithGnus
@@ -104,14 +164,6 @@
 
 
 
-
-;; Sending mail
-;;; Workstation can just rely on the system sendmail.  Below is for
-;;; laptop:
-;(setq smtpmail-smtp-server "localhost"
-;      smtpmail-smtp-service 2525	;SSH Tunnel to bnl.gov
-;      send-mail-function 'smtpmail-send-it
-;      message-send-mail-function 'smtpmail-send-it)
 
 ;; Archiving sent mail
 (setq gnus-message-archive-group
@@ -166,11 +218,19 @@
 ;		(nnimap-server-port 993)
 ;		(nnimap-stream ssl)
 ;; ssh tunneled to imap
-		(nnimap-address "localhost")
-		(nnimap-server-port 143)
-		(nnimap-stream network)
-		(nnimap-authenticator login)
+;		(nnimap-address "localhost")
+;		(nnimap-server-port 143)
+;		(nnimap-stream network)
+;		(nnimap-authenticator login)
+;; directly call imap server.  Need to set imap-shell-program
+		(nnimap-stream shell)
 		)
+
+	;; (nnimap "gmail"
+	;; 	(nnimap-address "imap.gmail.com")
+	;; 	(nnimap-server-port 993)
+	;; 	(remove-prefix "INBOX.")
+	;; 	(nnimap-stream ssl))
 
 	(nnfolder "old-outgoing"
 		  (nnfolder-directory "/home/bviren/Mail.pre-imap/archive")

@@ -27,8 +27,34 @@ Rely on el-get to provide some packages.  See el-get-install.el.
 
 Mail = GNUS + OfflineIMAP + notmuch + dovecot + postfix + SSH
 
-Postfix sends mail out to a port forwarded via ssh to a smarthost.
-OfflineIMAP syncs to primary server via port foraded via ssh.
+** Details of mail setup
+
+I wanted to be achieve several things:
+
+ * Continue using GNUS
+
+ * Speed up incorporating new mail and browsing groups
+
+ * Search my mail in a fast and easy manner
+
+ * Be able to read and write mail offline, while not connected to the network
+
+ * Make retrieving and sending mail work identically whether I'm at
+   work not. 
+
+There are various email indexers I have tried but have liked "notmuch"
+the most based on its simplicity of use and its integration with
+emacs.  It can not use mbox so Maildir is a requirement The 'net tells
+me that GNUS Maildir support is not so good but its IMAP support is.
+So, that and the offline requirement means a local IMAP server is
+needed.  Dovecot is used on both ends.  To get through the firewall,
+an ssh connection that bounces through work's SSH gateway and then to
+my workstation and starts the remote Dovecot.  Sending mail is
+delegated to the local postfix.  It is configured to use
+localhost:2525 as the smart host and to rewrite my outgoing email
+address to match with work's.  Mail queues up locally until I start a
+tunnel from localhost:2525, through work's SSH gateway to our internal
+smarthost.  This tunnel is managed by gstm for convenience.
 
 * gstm
 
