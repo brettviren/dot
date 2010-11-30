@@ -2,6 +2,9 @@
 
 # Meta-settings and functions common to all other bash setup scripts
 
+export FQDN=$(hostname -f)
+export HOST=$(hostname -s)
+
 export DOT_BASE=~/dot/bash
 
 # Source all files in a given directory
