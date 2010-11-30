@@ -12,6 +12,7 @@
 ;; Big Brother Data Base integration
 (require 'bbdb-gnus)
 
+
 (defun my-message-setup-hook ()
   (bbdb-define-all-aliases)
   (local-set-key "\M-TAB" 'bbdb-complete-name)
@@ -21,18 +22,19 @@
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-message) 
 (add-hook 'gnus-startup-hook '(lambda () (variable-pitch-mode t)) )
 
-(define-key gnus-group-mode-map (kbd "G")
-   '(lambda ()
-      (interactive)
-      (offlineimap)
-      )
-   )
-(define-key gnus-group-mode-map (kbd "O")
-   '(lambda ()
-      (interactive)
-      (switch-to-buffer "*OfflineIMAP*")
-      )
-   )
+
+;; (define-key gnus-group-mode-map (kbd "G")
+;;    '(lambda ()
+;;       (interactive)
+;;       (offlineimap)
+;;       )
+;;    )
+;; (define-key gnus-group-mode-map (kbd "O")
+;;    '(lambda ()
+;;       (interactive)
+;;       (switch-to-buffer "*OfflineIMAP*")
+;;       )
+;;    )
 
 ;; cert signed mail
 ; http://www.emacswiki.org/emacs/GnusSMIME
@@ -125,7 +127,7 @@
 	   ((string-match "bv@bnl.gov" from) (set-smtp-local))
 	   ((string-match "bviren@bnl.gov" from) (set-smtp-local))
 	   ((string-match "brett.viren@gmail.com" from) (set-smtp-gmail))
-	   (t set-smtp-bnl))))))
+	   (t set-smtp-local))))))
 
 (add-hook 'message-send-hook 'change-smtp)
 
@@ -202,7 +204,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 ;; keep flags on server
-(setq gnus-agent-synchronize-flags t)
+;(setq gnus-agent-synchronize-flags nil)
+(setq gnus-agent nil)
 
 (setq gnus-secondary-select-methods
       '(

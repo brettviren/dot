@@ -6,6 +6,8 @@
 	xcscope 
 	yasnippet 
 	offlineimap 
+	mailq
+	bbdb
 	))
 (el-get)
 (provide 'bv-packages)

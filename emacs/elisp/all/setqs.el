@@ -17,6 +17,6 @@
 (setq auto-mode-alist (append 
 		       (mapcar 'purecopy
 			       '(
-				 ("\\rc$" . conf-mode)
+				 ("rc$" . conf-mode)
 				 ))
 		       auto-mode-alist))

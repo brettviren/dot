@@ -1,3 +1,4 @@
+# -*- conf -*-
 # .notmuch-config - Configuration file for the notmuch mail system
 #
 # For more information about notmuch, see http://notmuchmail.org
@@ -41,7 +42,7 @@ other_email=brett.viren@gmail.com;
 #		added to all messages incorporated by "notmuch new".
 #
 [new]
-tags=unread;inbox;
+tags=
 
 # Maildir compatibility configuration
 #

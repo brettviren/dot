@@ -8,7 +8,6 @@
 ;; nnimap-stream to shell to make use of this.
 (setq imap-shell-program '("MAIL=maildir:$HOME/Maildir /usr/lib/dovecot/imap"))
 
-
 ;; sieve
 ;; http://josefsson.org/sieve/gnus-sieve.html
 ;; (autoload 'sieve-mode "sieve-mode")
@@ -24,6 +23,7 @@
 (add-hook 'gnus-group-mode-hook
           (lambda ()
             (local-set-key "S" 'notmuch-search)))
+;(setq notmuch-comand (expand-file-name "~/share/notmuch"))
 
 ;; crypto
 ;;;; mailcrypt, see info page

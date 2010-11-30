@@ -11,7 +11,11 @@ def lld_flagsimap2maildir(flagstring):
                '\\flagged': 'F',
                '\\deleted': 'T',
                '\\draft': 'D',
-               'gnus-expire': 'E'}
+               'gnus-expire': 'E',
+               'gnus-dormant': 'Q',
+               'gnus-forward': 'W',
+               'gnus-save': 'V',
+               }
     retval = []
     imapflaglist = [x.lower() for x in flagstring[1:-1].split()]
     for imapflag in imapflaglist:
@@ -28,7 +32,11 @@ def lld_flagsmaildir2imap(list):
                'F': '\\Flagged',
                'T': '\\Deleted',
                'D': '\\Draft',
-               'E': 'gnus-expire'}
+               'E': 'gnus-expire',
+               'Q': 'gnus-dormant',
+               'W': 'gnus-forward',
+               'V': 'gnus-save',
+               }
     retval = []
     for mdflag in list:
         if flagmap.has_key(mdflag):
