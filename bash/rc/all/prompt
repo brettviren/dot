@@ -6,6 +6,12 @@
 PS1='\u@\h:\W> '
 
 # If we have git completion, make it git aware
+if ! type __git_ps1 > /dev/null 2>&1 ; then
+    mine=$HOME/dot/bash/lib/git-completion.bash
+    if [ -f $mine ] ; then
+	source $mine
+    fi
+fi
 if type __git_ps1 > /dev/null 2>&1 ; then
     PS1='$(__git_ps1 "(%s)")'$PS1
 fi
