@@ -8,14 +8,12 @@
 	yasnippet 
 	))
 (if (or (string= (getenv "HOST") "hal") (string= (getenv "HOST") "lycastus"))
-(setq auto-mode-alist (append 
-		       (mapcar 'purecopy
-			       '(
-				 offlineimap 
-				 mailq
-				 bbdb
-				 ))
-		       el-get-sources))
+    (setq el-get-sources (append el-get-sources '(
+						  offlineimap 
+						  mailq
+						  bbdb
+						  ))))
+
 (el-get)
 (provide 'bv-packages)
 
