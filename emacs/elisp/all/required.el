@@ -1,4 +1,6 @@
 ;;
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 ;; YASnippet
 (add-to-list 'load-path "~/.emacs.d/el-get/yasnippet")
