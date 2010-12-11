@@ -225,7 +225,9 @@
 ;		(nnimap-server-port 143)
 ;		(nnimap-stream network)
 ;		(nnimap-authenticator login)
-;; directly call imap server.  Need to set imap-shell-program
+;; directly call imap server.  
+;; Need to set imap-shell-program
+;; see dot/emacs/elisp/all/email.el
 		(nnimap-stream shell)
 		)
 

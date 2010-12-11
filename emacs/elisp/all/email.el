@@ -1,5 +1,14 @@
 ;; set up email
 
+;; http://lists.gnu.org/archive/html/info-gnus-english/2010-09/msg00004.html
+(setq 
+ gnus-startup-file "~/gnus/.newsrc"
+ gnus-directory "~/gnus/"
+ gnus-dribble-directory "~/gnus/"
+ mail-source-directory "~/gnus/incoming/"
+ gnus-cache-directory "~/gnus/cache/"
+)
+
 (setq gnus-init-file "~/dot/emacs/elisp/dot.gnus.el")
 (setq gnus-inhibit-startup-message t)
 
