@@ -1,6 +1,6 @@
 ;; GNUS
 
-(shell-command "gnus-sync pull")
+;;(shell-command "gnus-sync pull")
 
 ;; for mairix based searching
 ;; http://www.emacswiki.org/emacs/GnusMairix

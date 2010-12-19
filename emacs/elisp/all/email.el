@@ -26,9 +26,9 @@
 ;;(gnus-sieve-setup) undefined?
 
 ;; Deal with sync'ing gnus directory
-(add-hook 'gnus-after-exiting-gnus-hook
-	  (lambda ()
-	    (shell-command "gnus-sync push")))
+;(add-hook 'gnus-after-exiting-gnus-hook
+;	  (lambda ()
+;	    (shell-command "gnus-sync push")))
 
 ;;; not much
 (add-to-list 'load-path "~/opt/notmuch/share/emacs/site-lisp")
