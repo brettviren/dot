@@ -40,15 +40,15 @@
 
 ;; cert signed mail
 ; http://www.emacswiki.org/emacs/GnusSMIME
-(setq mm-decrypt-option 'always)
-(setq mm-verify-option 'always)
-(setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
-(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/dot/certs/mine/cert-and-key.pem" nil))))
-(setq smime-CA-directory "/home/bviren/dot/certs/root")
-(setq smime-certificate-directory "/home/bviren/dot/certs/others")
-(setq password-cache t)
-(setq password-cache-expiry 86400)
-(add-hook 'message-send-hook 'mml-secure-message-sign-smime)
+;(setq mm-decrypt-option 'always)
+;(setq mm-verify-option 'always)
+;(setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
+;(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/dot/certs/mine/cert-and-key.pem" nil))))
+;(setq smime-CA-directory "/home/bviren/dot/certs/root")
+;(setq smime-certificate-directory "/home/bviren/dot/certs/others")
+;(setq password-cache t)
+;(setq password-cache-expiry 86400)
+;(add-hook 'message-send-hook 'mml-secure-message-sign-smime)
 
 ;; pgp signed mail
 ; http://www.emacswiki.org/emacs/GnusPGG
@@ -61,8 +61,17 @@
 ;; Automatically sign when sending mails
 ;(add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
 ;; Enough explicit settings
+(setq password-cache t)
+(setq password-cache-expiry 86400)
 ;(setq pgg-passphrase-cache-expiry 300)
-;(setq pgg-default-user-id jmh::primary-key)
+(setq pgg-default-user-id "bv")
+
+;; Find gpg2
+;(defcustom pgg-gpg-program "gpg2"
+;  "The GnuPG executable."
+;  :group 'pgg-gpg
+;  :type 'string)
+
 
 ;; Tells Gnus to inline the part
 (eval-after-load "mm-decode"
@@ -89,7 +98,7 @@
 	 )
 	("bnl:.*"
 	 (comment . "bnl")
-	 (display . all)
+	 ;(display . all)
 	 (gcc-self . t)
 	 )
 	("gmail:.*"
@@ -206,8 +215,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 ;; keep flags on server
-;(setq gnus-agent-synchronize-flags nil)
-(setq gnus-agent nil)
+(setq gnus-agent-synchronize-flags t)
+;(setq gnus-agent nil)
 
 (setq gnus-secondary-select-methods
       '(
@@ -223,14 +232,14 @@
 ;		(nnimap-server-port 993)
 ;		(nnimap-stream ssl)
 ;; ssh tunneled to imap
-;		(nnimap-address "localhost")
-;		(nnimap-server-port 143)
-;		(nnimap-stream network)
-;		(nnimap-authenticator login)
+		(nnimap-address "localhost")
+		(nnimap-server-port 143)
+		(nnimap-stream network)
+		(nnimap-authenticator login)
 ;; directly call imap server.  
 ;; Need to set imap-shell-program
 ;; see dot/emacs/elisp/all/email.el
-		(nnimap-stream shell)
+;		(nnimap-stream shell)
 		)
 
 	;; (nnimap "gmail"

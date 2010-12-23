@@ -48,8 +48,8 @@
 ;; (add-hook 'gnus-summary-mode-hook 'mc-install-read-mode)
 ;; (add-hook 'message-mode-hook 'mc-install-write-mode)
 ;; (add-hook 'news-reply-mode-hook 'mc-install-write-mode)
-;; (setq mc-gpg-user-id "Brett Viren <bv@bnl.gov>")
-;; (setq mc-gpg-keyserver "hkp://subkeys.pgp.net")
+;;(setq mc-gpg-user-id "Brett Viren <bv@bnl.gov>")
+;;(setq mc-gpg-keyserver "hkp://subkeys.pgp.net")
 
 ;; http://metapundit.net/sections/blog/239
 (require 'uniquify)
