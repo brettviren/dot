@@ -25,6 +25,8 @@
 (add-hook 'gnus-startup-hook '(lambda () (variable-pitch-mode t)) )
 
 
+;; Search imap
+
 ;; (define-key gnus-group-mode-map (kbd "G")
 ;;    '(lambda ()
 ;;       (interactive)
@@ -59,12 +61,11 @@
 ;; Here we make button for the multipart 
 (setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
 ;; Automatically sign when sending mails
-;(add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
+(add-hook 'message-send-hook 'mml-secure-message-sign-pgpmime)
 ;; Enough explicit settings
-(setq password-cache t)
-(setq password-cache-expiry 86400)
-;(setq pgg-passphrase-cache-expiry 300)
-(setq pgg-default-user-id "bv")
+(setq pgg-default-user-id "bv"
+      pgg-gpg-use-agent t)
+
 
 ;; Find gpg2
 ;(defcustom pgg-gpg-program "gpg2"
@@ -232,21 +233,22 @@
 ;		(nnimap-server-port 993)
 ;		(nnimap-stream ssl)
 ;; ssh tunneled to imap
-		(nnimap-address "localhost")
-		(nnimap-server-port 143)
-		(nnimap-stream network)
-		(nnimap-authenticator login)
+;		(nnimap-address "localhost")
+;		(nnimap-server-port 143)
+;		(nnimap-stream network)
+;		(nnimap-authenticator login)
 ;; directly call imap server.  
 ;; Need to set imap-shell-program
 ;; see dot/emacs/elisp/all/email.el
-;		(nnimap-stream shell)
+		(nnimap-stream shell)
+		;(nnir-search-engine imap)
 		)
 
 	;; (nnimap "gmail"
-	;; 	(nnimap-address "imap.gmail.com")
+	;;  	(nnimap-address "imap.gmail.com")
 	;; 	(nnimap-server-port 993)
-	;; 	(remove-prefix "INBOX.")
-	;; 	(nnimap-stream ssl))
+	;;  	(remove-prefix "INBOX.")
+	;;  	(nnimap-stream ssl))
 
 	(nnfolder "old-outgoing"
 		  (nnfolder-directory "/home/bviren/Mail.pre-imap/archive")
@@ -255,190 +257,4 @@
 		  )
 	)
       nnimap-split-inbox '("INBOX"))
-
-(setq nnimap-split-crosspost nil)	;don't cross post splits
-(setq nnimap-split-rule
-      '(
-	("duplicates" "^Gnus-Warning:.*duplicate")
-
-	("dusel.lbnd" "^\\(To:\\|Cc:\\|From:\\).*lbne_ndwg@fnal.gov")
-	("dusel.lbdusel" "^\\(To:\\|Cc:\\|From:\\).*lbdusel@solid.physics.ucdavis.edu")
-	("dusel.wc" "^\\(To:\\|Cc:\\|From:\\).*hmstk-lb-s4-water@lists.bnl.gov")
-	("dusel.software" "^\\(To:\\|Cc:\\|From:\\).*hmstk-lb-software@lists.bnl.gov")
-	("dusel.collab" "^\\(To:\\|Cc:\\|From:\\).*hmstk-lb-collab@lists.bnl.gov")
-	("dusel.wc.sim" "^\\(To:\\|Cc:\\|From:\\).*hmstk-wc-simulation@lists.bnl.gov")
-	("dusel.wc.det" "^\\(To:\\|Cc:\\|From:\\).*hmstk.*water@lists.bnl.gov")
-	("dusel.wc.pmt" "^\\(To:\\|Cc:\\|From:\\).*hmstk-lb-pmt@lists.bnl.gov")
-	("dusel.wc.mgt" "^\\(To:\\|Cc:\\|From:\\).*hmstk-wcd-mgt@lists.bnl.gov")
-	("dusel.docdb" "^\\(To:\\|Cc:\\|From:\\).*DUSEL/LBNE R&D Document Database")
-
-	("minos.software.offline"
-	 "^\\(To:\\|Cc:\\).*minos_software_discussion@.*fnal.gov.*")
-	("minos.shift" "^From:.*minos@minos-beamdata.fnal.gov")
-	("minos.cc" "^\\(To:\\|Cc:\\).*minos_cc.*@.*fnal.gov.*")
-	("minos.nc" "^\\(To:\\|Cc:\\).*minos_nc.*@.*fnal.gov.*")
-	("minos.nue" "^\\(To:\\|Cc:\\).*minos_nue@.*fnal.gov.*")
-	("minos.sim" "^\\(To:\\|Cc:\\).*minos_sim@.*fnal.gov.*")
-	("minos.batch" "^\\(To:\\|Cc:\\).*minos_batch@.*fnal.gov.*")
-	("minos.all" "^\\(To:\\|Cc:\\).*minos_all@.*fnal.gov.*")
-	("minos.all" "^\\(To:\\|Cc:\\).*minos_authors@.*fnal.gov.*")
-	("minos.near" "^\\(To:\\|Cc:\\).*minos_near@.*fnal.gov.*")
-	("minos.numi-notes" "^\\(To:\\|Cc:\\).*numi-notes@.*fnal.gov.*")
-	("minos.crl" "^From:.*MINOS_Logbook@fnal.gov")
-	("minos.users" "^\\(To:\\|Cc:\\|From:\\).*minos-users@fnal.gov")
-	("minos.beam" "^\\(To:\\|Cc:\\|From:\\).*numi_beam@fnal.gov")
-	("dayabay.cvs" "^From:.*cvspub@daya.*.ihep.ac.cn")
-	("dayabay.cvs" "^From:.*dayabay_cvs@dayabay.krl.caltech.edu")
-	;("dayabay.svn" "^From:.*@svnserver")
-	;("dayabay.svn" "^Subject:  r[0-9]+\&^From:.*@dayabay.ihep.ac.cn")
-	("dayabay.svn" "^Subject:  r[0-9]+ - ")
-	("dayabay.svn" "^Subject: r[0-9]+ - ")
-	("dayabay.svn" "^Subject: \\[theta13-svn\\] r[0-9]+ - ")
-	("dayabay.svn" "^To:.*theta13-svn")
-	("dayabay.trac" "^From:.*trac@dayabay.ihep.ac.cn")
-	("dayabay.docdb" "^From:.*Daya Bay Document Database")
-	("dayabay.docdb" "^From:.*apache@dayabay.ihep.ac.cn")
-	("dayabay.nightly" "^Subject:.*Daya Bay Offline Nightly Build")
-	("dayabay.bitten" "^Subject:.*slave-loop")
-	("dayabay.bitten" "^Subject:.*slave i686-debian")
-
-	("dayabay.twiki" "^From: TWiki Administrator")
-
-	("dayabay.muon" "^\\(To:\\|Cc:\\|From:\\).*theta13-muon@.*lbl.gov")
-	("dayabay.slowcontrols" "^\\(To:\\|Cc:\\|From:\\).*theta13-slowcontrols@.*lbl.gov")
-	("dayabay.antineutrino" "^\\(To:\\|Cc:\\|From:\\).*theta13-antineutrino@.*lbl.gov")
-	("dayabay.simulation" "^\\(To:\\|Cc:\\|From:\\).*theta13-simulation@.*lbl.gov")
-	("dayabay.offline" "^\\(To:\\|Cc:\\|From:\\).*theta13-offline@lbl.gov")
-	("dayabay.offline" "^\\(To:\\|Cc:\\|From:\\).*theta13-offline@lists.lbl.gov")
-	("dayabay.offline" "^Subject: \\[theta13-offline\\]")
-	("dayabay.production" "^\\(To:\\|Cc:\\|From:\\).*theta13-production@lbl.gov")
-	("dayabay.general" "^\\(To:\\|Cc:\\|From:\\).*theta13-general@.*lbl.gov")
-	("dayabay.us" "^\\(To:\\|Cc:\\|From:\\).*theta13-us@.*lbl.gov")
-	("dayabay.calib" "^\\(To:\\|Cc:\\|From:\\).*theta13-calibration@.*lbl.gov")
-	;("dayabay." "^\\(To:\\|Cc:\\|From:\\).*theta13-@.*lbl.gov")
-	("dayabay.papers" "^\\(To:\\|Cc:\\|From:\\).*theta13-papers@.*lbl.gov")
-	("dayabay.physics" "^\\(To:\\|Cc:\\|From:\\).*theta13-physics@.*lbl.gov")
-	("dayabay.talks" "^\\(To:\\|Cc:\\|From:\\).*theta13-talks@.*lbl.gov")
-	("dayabay.commissioning" "^\\(To:\\|Cc:\\|From:\\).*theta13-commissioning@.*lbl.gov")
-	("dayabay.eng" "^\\(To:\\|Cc:\\|From:\\).*theta13-eng@.*lbl.gov")
-	("lists.pdsf-users" "^\\(To:\\|Cc:\\|From:\\).*users@nersc.gov")
-
-	("p.yoko" "^From:.*\\(yoko\\|yoky\\|tango\\)@.*\\(homeip.net\||optonline.net\\).*")
-
-	("svn.vgm" "^Subject: SF.net SVN: vgm")
-	("cvs.minos" "^From:.*minoscvs")
-	("cvs.uno" "^From:.*pdk@nngroup.physics.sunysb.edu")
-	("ordo" "^From:.*\\(ordo@\\|@ordo.bnl.gov\\)")
-
-	("snews" "^\\(To:\\|Cc:\\|From:\\).*snews.*@lists.bnl.gov")
-	("snews" "^\\(To:\\|Cc:\\|From:\\).*snews-wg@lists.bnl.gov")
-	("snews" "^\\(To:\\|Cc:\\|From:\\).*snnet@lists.bnl.gov")
-	("cvs.snews" "^From:.*snrep@gateway.phy.bnl.gov")
-	("lists.owner" "^From:\\(.*-owner\\|.*-bounces\\)@.*")
-	("lists.schooltool" "^\\(To:\\|Cc:\\|From:\\).*schooltool.*@schooltool.org")
-	("lists.rhml" "^\\(To:\\|Cc:\\).*mirror-list.*@redhat.com.*")
-	("lists.ivtv.devel" "^\\(To:\\|Cc:\\).*ivtv-devel.*@ivtvdriver.org.*")
-	("lists.ivtv.users" "^\\(To:\\|Cc:\\).*ivtv-users.*@ivtvdriver.org.*")
-	("lists.rhbugs" "^From:.*bugzilla@redhat.com.*")
-
-	("lists.fnal.linux" "^\\(To:\\|Cc:\\).*linux.*@.*fnal.gov.*")
-	("lists.fnal.hepix" "^\\(To:\\|Cc:\\).*hepix-hepnt@.*fnal.gov.*")
-	("lists.fnal.hepix" "^\\(To:\\|Cc:\\).*hepix@hepix.org.*")
-	("lists.fnal.users" "^\\(To:\\|Cc:\\).*usersorg@.*fnal.gov.*")
-	("lists.fnal.docdb" "^From:.*minos-docdb@fnal.gov")
-
-	("lists.root" "^\\(To:\\|Cc:\\).*root.cern.ch.*")
-	("lists.root" "^\\(To:\\|Cc:\\).*roottalk*")
-	("lists.cmt" "^\\(To:\\|Cc:\\|From:\\).* CMT-L@in2p3.fr")
-	("lists.blitz" "^Subject:.*Blitz-support.*")
-	("lists.debian.amd64" "^\\(To:\\|Cc:\\).*debian-x86-64.*")
-	("lists.debian.amd64" "^\\(To:\\|Cc:\\).*debian-amd64.*")
-	("lists.debian.news" "^\\(To:\\|Cc:\\).*debian-news@lists.debian.org.*")
-	("lists.debian.science" "^\\(To:\\|Cc:\\).*debian-science@lists.debian.org.*")
-	("lists.debian.beowulf" "^\\(To:\\|Cc:\\).*debian-beowulf@lists.debian.org.*")
-	("lists.guile" "^\\(To:\\|Cc:\\).*guile-user@gnu.org.*")
-	("lists.pygtk" "^\\(To:\\|Cc:\\).*pygtk@daa.com.au.*")
-	("lists.sigc" "^\\(To:\\|Cc:\\).*libsigc-list@gnome.org.*")
-
-	;;; BNL mailing lists
-	;; Do NOT autogenerate a group based on a list name!
-	;("lists.bnl.\\2" "^\\(To:\\|From:\\|Cc:\\).*<\\(.*\\)-l@lists.bnl.gov")
-	("lists.bnl.gaudi-talk" "^\\(To:\\|From:\\|Cc:\\).*gaudi-talk@lists.bnl.gov")
-	("lists.open-scientist" "^\\(To:\\|From:\\|Cc:\\).*OPEN-SCIENTIST@in2p3.fr")
-
-	("lists.bnl.scanning" "^\\(To:\\|From:\\|Cc:\\).*scanning-l@lists.bnl.gov")
-	("lists.bnl.llug" "^\\(To:\\|From:\\|Cc:\\).* bnl-llug@.*bnl.gov")
-	("lists.bnl.computer-liaisons" "^\\(From:\\|To:\\|Cc:\\).*computer-liaisons@phyppro1.phy.bnl.gov")
-	("lists.bnl.nwg" "^\\(From:\\|To:\\|Cc:\\).*nwg@nwg.phy.bnl.gov")
-	("lists.bnl.nessus"    "^From:.*noreply@secops.itd.bnl.gov")
-	("lists.bnl.csac" "^\\(\\From:\\|To:\\|Cc:\\).*csac-l@.*bnl.gov")
-	;("lists.bnl.cspwg" "^(\\From:\\|To:\\|Cc:\\).*<cspwg-l@lists.bnl.gov.*")
-	("lists.bnl.cspwg" "^\\(To:\\|From:\\|Cc:\\).*[< ]cspwg-l@lists.bnl.gov")
-	("lists.bnl.linux" "^\\(To:\\|From:\\|Cc:\\).*[< ].*linux.*@lists.bnl.gov")
-
-	("lists.bnl.broadcast" "^To:.*broadcast-l@lists.bnl.gov")
-	("lists.bnl.seminars" "^\\(From:\\|To:\\|Cc:\\).*physics-seminars-l@lists.bnl.gov")
-	("lists.bnl.physics" "^\\(From:\\|To:\\|Cc:\\).*[Pp]hysics[Pp]ersonnel@bnl.gov")
-	("lists.bnl.peoplesoft" "^\\(From:\\|To:\\|Cc:\\).*[Pp]soft[Hh]8[Pp][Dd]@bnl.gov")
-
-	("lists.bnl.csmis" "^From:.*csmisdbm@bnl.gov")
-	("lists.bnl.edg" "^\\(From:\\|To:\\|Cc:\\).*[Ee]dg-employees-l@lists.bnl.gov")
-	("lists.bnl.dayabay" "^\\(From:\\|To:\\|Cc:\\).*dayabay-bnl-l@lists.bnl.gov")
-	("lists.bnl.minos" "^\\(From:\\|To:\\|Cc:\\).*bnl-minos@minos.phy.bnl.gov")
-	("lists.bnl.e949" "^\\(From:\\|To:\\|Cc:\\).*e949.general@bnlku28.phy.bnl.gov")
-	("lists.bnl.physics" "^\\(From:\\|To:\\|Cc:\\).*allphysics@.*bnl.gov")
-	("lists.bnl.ags" "^\\(From:\\|To:\\|Cc:\\).*ags.*@.*bnl.gov")
-	("lists.bnl.apd" "^\\(From:\\|To:\\|Cc:\\).*apd@.*bnl.gov")
-	("lists.bnl.notify" "^\\(From:\\|To:\\|Cc:\\).*[Nn]otify-l.*@.*bnl.gov")
-	("lists.bnl.notify" "^\\(From:\\|To:\\|Cc:\\).*announce@rcf.rhic.bnl.gov")
-	("lists.bnl.notify" "^\\(From:\\|To:\\|Cc:\\).*bnl-rhel-l.*@.*bnl.gov")
-	("lists.bnl.notify" "^\\(From:\\|To:\\|Cc:\\).*all-listadmins-l@.*bnl.gov")
-
-	("lists.bnl.itd-wg" "^\\(From:\\|To:\\|Cc:\\).*wirelesswg-l.*@.*bnl.gov")
-
-	("lists.bnl.users" "^To:.*users-l@lists.bnl.gov")
-	("lists.bnl.users" "^To:.*[uU]serscenter_rhic_news_distribution-l@lists.bnl.gov")
-	("lists.bnl.social" "^\\(From:\\|To:\\|Cc:\\).*social-l@lists.bnl.gov")
-	("lists.bnl.social" "^\\(From:\\|To:\\|Cc:\\).*asap-l@lists.bnl.gov")
-	("lists.bnl.social" "^\\(From:\\|To:\\|Cc:\\).*bnl-scc-l@lists.bnl.gov")
-
-
-	("lists.bnl.cyberinfo" "^\\(From:\\|To:\\|Cc:\\).*CyberSecurityPOCsa@bnl.gov")
-	("lists.bnl.cyberinfo" "^From:.*cyberinfo@bnl.gov")
-	("lists.bnl.sysadmin" "^\\(From:\\|To:\\|Cc:\\).*[Ss]ys[Aa]dmin.*@lists.bnl.gov")
-
-;sysadmin-l@lists.bnl.gov
-
-	("lists.batch" "^Subject:.*\\(torque\\|maui\\|moab\\)users")
-	("lists.xxx" "^From:.*no-reply@arXiv.org")
-	("lists.twisted" "^\\(To:\\|Cc:\\|From:\\).*twisted-python@twistedmatrix.com")
-	("lists.twisted.web" "^\\(To:\\|Cc:\\|From:\\).*twisted-web@twistedmatrix.com")
-	("lists.skribe" "^\\(To:\\|Cc:\\|From:\\).*skribe@sophia.inria.fr")
-	("lists.puppet" "^\\(To:\\|Cc:\\|From:\\).*puppet-users@madstop.com")
-	("lists.puppet" "^\\(To:\\|Cc:\\|From:\\).*puppet-users@googlegroups.com")
-
-	("root.minos" "^From:.*\\(root\\|daemon\\|logcheck\\)@minos.phy.bnl.gov")
-	("root.updates" "^Subject: Debian package updates")
-	("root.bnlboom" "^From:.*root@bnlboom.*.phy.bnl.gov")
-	("root.thassos" "^From:.*root@thassos.phy.bnl.gov")
-	("root.nuhep" "^From:.*root@\\(phyppro\\|physgi\\).*")
-	("root.nuhep" "^To:.*postmaster@physgi04.phy.bnl.gov.*")
-	("root.monitor" "^From:.*monitor@.*bnl.gov")
-	("root.monitor" "^From:.*nagios@.*bnl.gov")
-	("auto.backup" "^From:.*legatounixmst.itd.bnl.gov.*")
-	("auto.cfengine" "^From:.*cfengine@.*bnl.gov")
-	("auto.backup" "^Subject:.*BACKUP STATUS.*")
-	("auto.logwatch" "^Subject:.*LogWatch.*")
-	("auto.cron" "^From: [Cc]ron .*")
-	("auto.cron" "^From: .*[Cc]ron Daemon.*")
-	("auto.batch" "^Subject: PBS JOB .*")
-	("crap" "^\\(From:\\|To:\\|Cc:\\).*ultimate-dance-li@yahoogroups.com")
-	("crap" "^\\(From:\\|To:\\|Cc:\\).*dancemgc@optonline.net")
-	("root.nessus" "^Subject: Nessus Scan of ")
-	;; One doesn't need this but it is a way to get things out of
-	;; the INBOX so /var/mail doesn't fill up.
-	("default" "^To:.*\\(bv\\|bviren\\)@bnl.gov")
-	("default" "")
-))
-
 
