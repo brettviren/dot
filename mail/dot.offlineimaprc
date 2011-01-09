@@ -11,6 +11,8 @@ pythonfile = ~/dot/mail/offlineimap.py
 localrepository = LocalIMAP
 remoterepository = RemoteIMAP
 postsynchook = notmuch new
+## Doesn't work?
+#autorefresh = 10
 
 [Repository LocalIMAP]
 type = IMAP

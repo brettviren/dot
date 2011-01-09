@@ -12,6 +12,9 @@
       inhibit-splash-screen t
       )
 
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium-browser")
+
 (global-font-lock-mode 1)
 (iswitchb-mode t)
 (setq auto-mode-alist (append 

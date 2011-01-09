@@ -26,11 +26,14 @@
 ;;(gnus-sieve-setup) undefined?
 
 ;; Deal with sync'ing gnus directory
-(add-hook 'gnus-after-exiting-gnus-hook
-	  (lambda ()
-	    (shell-command "gnus-sync push")))
+;(add-hook 'gnus-after-exiting-gnus-hook
+;	  (lambda ()
+;	    (shell-command "gnus-sync push")))
 
-;;; not much
+;;; nnir imap serach/indexing
+(require 'nnir)
+
+;;; not much search/indexing
 (add-to-list 'load-path "~/opt/notmuch/share/emacs/site-lisp")
 (require 'notmuch)
 (add-hook 'gnus-group-mode-hook
@@ -40,16 +43,20 @@
 
 ;; crypto
 ;;;; mailcrypt, see info page
-;; (load-library "mailcrypt") ; provides "mc-setversion"
-;; (mc-setversion "gpg")    ; for PGP 2.6 (default); also "5.0" and "gpg"
-;; (autoload 'mc-install-write-mode "mailcrypt" nil t)
-;; (autoload 'mc-install-read-mode "mailcrypt" nil t)
-;; (add-hook 'mail-mode-hook 'mc-install-write-mode)
-;; (add-hook 'gnus-summary-mode-hook 'mc-install-read-mode)
-;; (add-hook 'message-mode-hook 'mc-install-write-mode)
-;; (add-hook 'news-reply-mode-hook 'mc-install-write-mode)
-;; (setq mc-gpg-user-id "Brett Viren <bv@bnl.gov>")
-;; (setq mc-gpg-keyserver "hkp://subkeys.pgp.net")
+; (load-library "mailcrypt") ; provides "mc-setversion"
+; (mc-setversion "gpg")    ; for PGP 2.6 (default); also "5.0" and "gpg"
+; (autoload 'mc-install-write-mode "mailcrypt" nil t)
+; (autoload 'mc-install-read-mode "mailcrypt" nil t)
+; (add-hook 'mail-mode-hook 'mc-install-write-mode)
+; for gnus:
+; (add-hook 'gnus-summary-mode-hook 'mc-install-read-mode)
+; (add-hook 'message-mode-hook 'mc-install-write-mode)
+; (add-hook 'news-reply-mode-hook 'mc-install-write-mode)
+; various
+; (setq mc-gpg-user-id "Brett Viren <bv@bnl.gov>")
+; (setq mc-gpg-keyserver "hkp://subkeys.pgp.net")
+; (setq mc-passwd-timeout 86400)
+
 
 ;; http://metapundit.net/sections/blog/239
 (require 'uniquify)
