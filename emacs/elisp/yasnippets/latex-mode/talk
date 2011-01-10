@@ -1,0 +1,50 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{background}[grid][step=1cm]
+\useoutertheme{infolines}
+\usecolortheme[named=violet]{structure}
+\setbeamertemplate{items}[circle]
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,backgrounds}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+
+\author[${1:`(user-full-name)`}]{$1}
+\institute[${2:BNL}]
+{
+  ${3:Physics Department}
+
+  \includegraphics[height=1.5cm]{bnl-logo}
+}
+\title[${4:Short Title}]{${5:Long Title}}
+\date[${6:Short Date/Event}]{${7:Long Date/Event}}
+
+\newcommand{\fixme}[1]{\textbf{FIXME:} \textit{#1}}
+
+\begin{document}
+
+\lstset{%
+  emphstyle=\color{red},
+  keywordstyle=\color{black}\bfseries,
+  basicstyle=\footnotesize,
+  identifierstyle=\color{DarkOrchid}\ttfamily,
+  commentstyle=\color{Brown}\ttfamily,
+  stringstyle=\color{blue}\ttfamily,
+  showstringspaces=false}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents    
+\end{frame}
+
+
+$0
+
+\end{document}
