@@ -6,6 +6,7 @@
 ;	auto-complete 
 ;	xcscope 
 	yasnippet 
+	anything
 	))
 (if (or (string= (getenv "HOST") "hal") (string= (getenv "HOST") "lycastus"))
     (setq el-get-sources (append el-get-sources '(
@@ -15,5 +16,9 @@
 						  ))))
 
 (el-get)
+
+(require 'anything-match-plugin)
+(require 'anything-config)
+
 (provide 'bv-packages)
 
