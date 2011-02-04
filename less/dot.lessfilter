@@ -2,8 +2,18 @@
 
 if [ -d $1 ] ; then
     /bin/ls --color=always -lF $1
-    exit
+    exit 0
 fi
 
-#source-highlight -fesc -oSTDOUT "$1" 2>/dev/null
-pygmentize -O bg=dark $1
+if [ -x /usr/bin/pygmentize ] ; then
+    pygmentize -O bg=dark $1
+    exit 0
+fi
+if [ -x /usr/bin/source-highlight ] ; then
+    source-highlight -fesc -oSTDOUT "$1" 2>/dev/null
+    exit 0
+fi
+
+exit 1
+# emacs -nw -q $1
+
