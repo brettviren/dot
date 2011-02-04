@@ -64,6 +64,10 @@ install_gstm () {
     ln -s $HOME/dot/gstm $HOME/.gSTM
 }
 
+install_less () {
+    install_file $HOME/dot/less/dot.lessfilter $HOME/.lessfilter
+}
+
 install_bash
 install_emacs
 install_mail

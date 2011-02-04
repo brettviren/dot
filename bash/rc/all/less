@@ -4,4 +4,4 @@
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 export PAGER=less
-export LESS=-X
+export LESS="-X -R"
