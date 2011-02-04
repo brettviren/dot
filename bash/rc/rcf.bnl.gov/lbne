@@ -1,0 +1,6 @@
+# -*- shell-script -*-
+
+# Entrance to dayabay environment setup
+if [ "$USER" = "bvlbne" ] ; then
+    source /data0/lbne/bv/interim/setup-interim.sh
+fi
