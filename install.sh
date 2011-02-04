@@ -72,3 +72,4 @@ install_bash
 install_emacs
 install_mail
 install_gstm
+install_less
