@@ -5,8 +5,27 @@ if [ -d $1 ] ; then
     exit 0
 fi
 
+guess_file () {
+    if egrep -q '#!.*python' $1 ; then
+	echo py
+	return
+    fi
+    if egrep -q '#!.*/sh' $1 -o egrep -q '#!.*/bash' $1 ; then
+	#egrep -q '#.*-\*- shell-script -\*-' $1 ; then
+	echo sh
+	return
+    fi
+}
+
 if [ -x /usr/bin/pygmentize ] ; then
-    pygmentize -O bg=dark $1
+
+    # Handle the case where the extension doesn't guess
+    lexer=$(guess_file $1)
+    if [ -n "$lexer" ] ; then
+	lexer="-l $lexer"
+    fi
+
+    pygmentize -O bg=dark $lexer $1
     exit 0
 fi
 if [ -x /usr/bin/source-highlight ] ; then
