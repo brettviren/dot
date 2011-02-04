@@ -30,3 +30,6 @@
 ;(pymacs-load "ropemacs" "rope-")
 
 
+(require 'anything-match-plugin)
+(require 'anything-config)
+

@@ -9,7 +9,8 @@
 (load "functions.el")
 (load "cpp.el")
 ;; only read email on a couple of hosts
-(if (or (string= (getenv "HOST") "hal") (string= (getenv "HOST") "lycastus"))
+(if (and (or (string= (getenv "HOST") "hal") (string= (getenv "HOST") "lycastus"))
+	 (string= (getenv "USER") "bviren"))
     (load "email.el")
   )
 (load "mode-hooks.el")
