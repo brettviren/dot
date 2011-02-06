@@ -8,6 +8,8 @@
 (load "setqs.el")
 (load "functions.el")
 (load "cpp.el")
+(load "python.el")
+(load "dayabay.el")
 ;; only read email on a couple of hosts
 (if (and (or (string= (getenv "HOST") "hal") (string= (getenv "HOST") "lycastus"))
 	 (string= (getenv "USER") "bviren"))
