@@ -20,8 +20,5 @@
 
 (el-get)
 
-(require 'anything-match-plugin)
-(require 'anything-config)
-
 (provide 'bv-packages)
 
