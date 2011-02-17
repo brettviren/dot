@@ -4,6 +4,7 @@
 
 export FQDN=$(hostname -f)
 export HOST=$(hostname -s)
+export DOMAIN=$(hostname -d)
 
 export DOT_BASE=~/dot/bash
 

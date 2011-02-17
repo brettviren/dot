@@ -1,8 +1,3 @@
 ;; Tell what file extentions should trigger c++-mode
-(setq auto-mode-alist (append 
-		       (mapcar 'purecopy
-			       '(
-				 ("\\.onx$" . xml-mode)
-				 ("\\.xml$" . xml-mode)
-				 ))
-		       auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.onx$" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xml$" . xml-mode))
