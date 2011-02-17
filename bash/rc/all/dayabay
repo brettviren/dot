@@ -1,6 +1,10 @@
 # -*- shell-script -*-
 
 # Entrance to dayabay environment setup
-if [ "$(hostname -d)" != "rcf.bnl.gov" -a -f ~dayabay/nuwaenv.sh ] ; then
-    source ~dayabay/nuwaenv.sh
-fi
+for try in ~dayabay/nuwaenv.sh $HOME/work/dayabay/nuwaenv.sh
+do
+    if [ -f "$try" ] ; then
+	source $try
+	break
+    fi
+done

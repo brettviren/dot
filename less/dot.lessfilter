@@ -1,9 +1,15 @@
 #!/bin/bash
 
+echo $* > /tmp/last-lessfilter
+
 if [ -d $1 ] ; then
     /bin/ls --color=always -lF $1
     exit 0
 fi
+
+case "$1" in 
+    *.man) nroff -man "$1";;
+esac
 
 guess_file () {
     if egrep -q '#!.*python' $1 ; then
@@ -11,7 +17,10 @@ guess_file () {
 	return
     fi
     if egrep -q '#!.*/sh' $1 -o egrep -q '#!.*/bash' $1 ; then
-	#egrep -q '#.*-\*- shell-script -\*-' $1 ; then
+	echo sh
+	return
+    fi
+    if egrep -q '#.*-\*- shell-script -\*-' $1 ; then
 	echo sh
 	return
     fi
