@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-source ~/dot/bash/common.sh
+source ~/git/dot/bash/common.sh
 dot_source_dirs rc
 
 

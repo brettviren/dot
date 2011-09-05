@@ -1,8 +1,10 @@
 #!/bin/bash
 
+source $HOME/git/dot/bash/common.sh
+
 install_file () {
-    source=$1 ; shift
-    target=$1 ; shift
+    local source=$1 ; shift
+    local target=$1 ; shift
     if [ -z "$source" -o -z "$target" ] ; then 
 	echo "install_file <source> <target>"
 	return
@@ -26,9 +28,9 @@ install_file () {
 }
 
 install_bash () {
-    install_file $HOME/dot/bash/bash_login $HOME/.bash_login
-    install_file $HOME/dot/bash/bash_logout $HOME/.bash_logout
-    install_file $HOME/dot/bash/bashrc $HOME/.bashrc
+    install_file $DOT_BASE/bash/bash_login $HOME/.bash_login
+    install_file $DOT_BASE/bash/bash_logout $HOME/.bash_logout
+    install_file $DOT_BASE/bash/bashrc $HOME/.bashrc
     for file in $HOME/.profile $HOME/.bash_profile; do
 	if [ ! -f $file ] ; then continue; fi
 	echo "Moving $file to ${file}.moved"
@@ -43,7 +45,7 @@ install_emacs () {
 	    return
 	fi
     fi
-    install_file $HOME/dot/emacs/dot.emacs $HOME/.emacs
+    install_file $DOT_BASE/emacs/dot.emacs $HOME/.emacs
 }
 
 install_mail () {
@@ -51,7 +53,7 @@ install_mail () {
     if [ -f $HOME/$rc ] ; then
 	return
     fi
-    install_file $HOME/dot/mail/dot$rc $HOME/$rc
+    install_file $DOT_BASE/mail/dot$rc $HOME/$rc
 }
 
 install_gstm () {
@@ -61,11 +63,11 @@ install_gstm () {
     if [ -L $HOME/.gSTM ] ; then
 	return
     fi
-    ln -s $HOME/dot/gstm $HOME/.gSTM
+    ln -s $DOT_BASE/gstm $HOME/.gSTM
 }
 
 install_less () {
-    install_file $HOME/dot/less/dot.lessfilter $HOME/.lessfilter
+    install_file $DOT_BASE/less/dot.lessfilter $HOME/.lessfilter
 }
 
 install_bash

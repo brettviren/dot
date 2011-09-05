@@ -6,7 +6,7 @@ export FQDN=$(hostname -f)
 export HOST=$(hostname -s)
 export DOMAIN=$(hostname -d)
 
-export DOT_BASE=~/dot/bash
+export DOT_BASE=~/git/dot
 
 # Source all files in a given directory
 dot_sourcedir () {
@@ -25,7 +25,7 @@ dot_sourcedir () {
 }
 dot_source_dirs () {
     local subdir=$1 ; shift
-    local basedir=$DOT_BASE/$subdir
+    local basedir=$DOT_BASE/bash/$subdir
     if [ ! -d $basedir ] ; then
 	#echo "dot_source_dirs: given non-directory: $basedir"
 	return
@@ -54,4 +54,4 @@ dot_source_dirs () {
     fi
     if [ -f $local_file ] ; then source $local_file; fi
 }
-dot_sourcedir $DOT_BASE/common
+dot_sourcedir $DOT_BASE/bash/common
