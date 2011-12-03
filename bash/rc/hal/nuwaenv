@@ -1,0 +1,10 @@
+#!/bin/sh
+nuwaenv () {
+    file="/tmp/nuwaenv.${USER}.$$"
+    /home/bv-open/work/dayabay/offline/installation/trunk/dybinst/python/nuwaenv.py -s bash $* > $file ;
+    while [ -n "$1" ] ; do 
+        shift;
+    done;
+    source "$file"
+    rm -f "$file"
+}

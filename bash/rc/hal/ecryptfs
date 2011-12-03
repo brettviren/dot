@@ -1,0 +1,6 @@
+#!/bin/bash
+count=$(cat /dev/shm/ecryptfs-bv-Private)
+if [ "$count" = 1 ] ; then
+    echo 9 > /dev/shm/ecryptfs-bv-Private
+fi
+
