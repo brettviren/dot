@@ -5,6 +5,7 @@
   ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(display-time-mode t)
+ '(mouse-yank-at-point t)
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil)

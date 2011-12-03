@@ -1,8 +1,8 @@
 # -*- shell-script -*- #
 
 # make less more friendly for non-text input files, see lesspipe(1)
-export LESSOPEN="|$HOME/dot/bash/lib/lesspipe %s"
-export LESSCLOSE="$HOME/dot/bash/lib/lesspipe %s %s"
+export LESSOPEN="|$DOT_BASE/bash/lib/lesspipe %s"
+export LESSCLOSE="$DOT_BASE/bash/lib/lesspipe %s %s"
 
 export PAGER=less
 export LESS="-X -R"

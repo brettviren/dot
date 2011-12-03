@@ -9,7 +9,7 @@
  gnus-cache-directory "~/gnus/cache/"
 )
 
-(setq gnus-init-file "~/dot/emacs/elisp/dot.gnus.el")
+(setq gnus-init-file "~/git/dot/emacs/elisp/dot.gnus.el")
 (setq gnus-inhibit-startup-message t)
 
 ;; Since we rely on OfflineIMAP to fill Maildir talk to the IMAP

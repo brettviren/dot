@@ -45,9 +45,9 @@
 ;(setq mm-decrypt-option 'always)
 ;(setq mm-verify-option 'always)
 ;(setq gnus-buttonized-mime-types '("multipart/encrypted" "multipart/signed"))
-;(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/dot/certs/mine/cert-and-key.pem" nil))))
-;(setq smime-CA-directory "/home/bviren/dot/certs/root")
-;(setq smime-certificate-directory "/home/bviren/dot/certs/others")
+;(setq smime-keys (quote (("bv@bnl.gov" "/home/bviren/git/dot/certs/mine/cert-and-key.pem" nil))))
+;(setq smime-CA-directory "/home/bviren/git/dot/certs/root")
+;(setq smime-certificate-directory "/home/bviren/git/dot/certs/others")
 ;(setq password-cache t)
 ;(setq password-cache-expiry 86400)
 ;(add-hook 'message-send-hook 'mml-secure-message-sign-smime)
@@ -239,7 +239,7 @@
 ;		(nnimap-authenticator login)
 ;; directly call imap server.  
 ;; Need to set imap-shell-program
-;; see dot/emacs/elisp/all/email.el
+;; see git/dot/emacs/elisp/all/email.el
 		(nnimap-stream shell)
 		;(nnir-search-engine imap)
 		)

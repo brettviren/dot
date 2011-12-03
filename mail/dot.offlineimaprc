@@ -5,7 +5,7 @@
 
 [general]
 accounts =  BNL
-pythonfile = ~/dot/mail/offlineimap.py
+pythonfile = ~/git/dot/mail/offlineimap.py
 
 [Account BNL]
 localrepository = LocalIMAP

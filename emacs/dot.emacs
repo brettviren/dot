@@ -1,5 +1,5 @@
 ;; -*- emacs-lisp -*-
-(setq custom-file "~/dot/emacs/custom.el")
+(setq custom-file "~/git/dot/emacs/custom.el")
 (load custom-file)
-(load "~/dot/emacs/main.el")
+(load "~/git/dot/emacs/main.el")
 

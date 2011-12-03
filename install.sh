@@ -70,8 +70,16 @@ install_less () {
     install_file $DOT_BASE/less/dot.lessfilter $HOME/.lessfilter
 }
 
+install_sawfish () {
+    if [ -d $HOME/.sawfish ] ; then
+	mv $HOME/.sawfish $HOME/.sawfish.moved
+    fi
+    ln -s $DOT_BASE/sawfish $HOME/.sawfish
+}
+
 install_bash
 install_emacs
 install_mail
 install_gstm
 install_less
+install_sawfish
