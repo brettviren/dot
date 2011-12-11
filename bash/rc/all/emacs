@@ -1,3 +1,12 @@
 # -*- shell-script -*- #
 
 export EDITOR="emacs -nw"
+
+# http://emacs-fu.blogspot.com/2011/12/system-administration-with-emacs.html
+# Edit as root
+function E() {
+         emacsclient -c -a emacs "/sudo:root@localhost:$1"
+}   
+
+# or:
+# alias E="EDITOR=\"emacsclient -c -a emacs\" sudoedit"
